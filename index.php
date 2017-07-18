@@ -1,5 +1,10 @@
 <?php
 session_start();
+require 'controller/dashboard.php';
+$object=new DashBoard();
+$album=$object->Album();
+$top_song=$object->TopSongList();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +81,13 @@ session_start();
     </script>-->
 </head>
 <body>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=635983393233255";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 	<!-- ---------------------------------------banner start here--------------------------------------- -->
 	<div  class="agileinfo-main">
@@ -133,7 +145,6 @@ session_start();
 
 
 
-
 	<!-- ---------------------------------------welcome--------------------------------------- -->
 	<div class="welcome agileits">
 		<div class="container">
@@ -151,58 +162,25 @@ session_start();
 		<div class="container">
 			<h3 class="agile-title">New Albums</h3>
 			<div>
+                <?php foreach ($album as $key) {?>
 			<div class="col-md-6 w3lsalbums-grid">
 				<div class="albums-left">
 					<div class="wthree-almub">
 					</div>
 				</div>
 				<div class="albums-right">
-					<h4>Dolores Btrs</h4>
-					<p>Nsatolernatur auts oditaut miertase vertas.Measnseqe ustur magni dolores eoqus ratione voluptate.</p>
-					<a class="w3more btn btn btn-xs btn-success" href="album.php"><i class="fa fa-mail-forward" aria-hidden="true"></i>Listen</a>
+					<h4><?php echo $key['album_name'];?>-<?php echo $total_song=$object->total_song($key['album_id']);?></h4>
+					<p><?php echo $key['description'];?></p>
+					<a class="w3more btn btn btn-xs btn-success" href="album.php?album_id=<?php echo base64_encode($key['album_id'].":rathik")?>)"><i class="fa fa-mail-forward" aria-hidden="true"></i>Listen</a>
 					<a class="w3more btn btn btn-xs btn-danger" href="single.html"><i class="fa fa-download" aria-hidden="true"></i>Buy Now - $5</a>
 				</div>
 				<div class="clearfix"></div>
 			</div>
-			<div class="col-md-6 w3lsalbums-grid">
-				<div class="albums-left">
-					<div class="wthree-almub wthree-almub2">
-					</div>
-				</div>
-				<div class="albums-right">
-					<h4>Dolores Btrs</h4>
-					<p>Nsatolernatur auts oditaut miertase vertas.Measnseqe ustur magni dolores eoqus ratione voluptate.</p>
-					<a class="w3more btn btn btn-xs btn-success" href="single.html"><i class="fa fa-mail-forward" aria-hidden="true"></i>Listen</a>
-					<a class="w3more btn btn btn-xs btn-danger" href="single.html"><i class="fa fa-download" aria-hidden="true"></i>Buy Now - $5</a>	</div>
-				<div class="clearfix"></div>
-			</div>
+
+                <?php } ?>
+
 		</div>
-			<div>
-				<div class="col-md-6 w3lsalbums-grid">
-					<div class="albums-left">
-						<div class="wthree-almub">
-						</div>
-					</div>
-					<div class="albums-right">
-						<h4>Dolores Btrs</h4>
-						<p>Nsatolernatur auts oditaut miertase vertas.Measnseqe ustur magni dolores eoqus ratione voluptate.</p>
-						<a class="w3more btn btn btn-xs btn-success" href="single.html"><i class="fa fa-mail-forward" aria-hidden="true"></i>Listen</a>
-						<a class="w3more btn btn btn-xs btn-danger" href="single.html"><i class="fa fa-download" aria-hidden="true"></i>Buy Now - $5</a>	</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="col-md-6 w3lsalbums-grid">
-					<div class="albums-left">
-						<div class="wthree-almub wthree-almub2">
-						</div>
-					</div>
-					<div class="albums-right">
-						<h4>Dolores Btrs</h4>
-						<p>Nsatolernatur auts oditaut miertase vertas.Measnseqe ustur magni dolores eoqus ratione voluptate.</p>
-						<a class="w3more btn btn btn-xs btn-success" href="single.html"><i class="fa fa-mail-forward" aria-hidden="true"></i>Listen</a>
-						<a class="w3more btn btn btn-xs btn-danger" href="single.html"><i class="fa fa-download" aria-hidden="true"></i>Buy Now - $5</a>	</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
+
 
 			<div class="clearfix"></div>
 		</div>
@@ -218,20 +196,26 @@ session_start();
 
 	<main class="container pt-5">
 		<div class="row">
-			<div class="col-md-6 card mb-5">
+			<div class="col-md-8 card mb-5">
 				<div class="card-block p-0">
 					<table class="table table-bordered table-sm m-0">
 						<thead class="">
 						<tr>
 							<th>Multiple</th>
+                            <th>Album Art</th>
 							<th>Title</th>
 							<th>Artist</th>
+                            <th>Album</th>
 							<th>Genre</th>
+                            <th>Year</th>
 							<th class="text-center">Listen</th>
 							<th class="text-center">Dowload/Buy</th>
 						</tr>
 						</thead>
 						<tbody>
+
+
+                        <?php foreach ($top_song as $key){ ?>
 						<tr>
 							<td>
 								<label class="custom-control custom-checkbox">
@@ -239,9 +223,12 @@ session_start();
 									<span class="custom-control-indicator"></span>
 								</label>
 							</td>
-							<td>John Lilki</td>
-							<td>September 14, 2013</td>
-							<td>Action</td>
+                            <td><?php echo "cover link" /*$key['album_cover']*/?></td>
+							<td><?php echo $key['song_name']?></td>
+							<td><?php echo $key['artist_name']?></td>
+							<td><?php echo $key['album_name']?></td>
+                            <td><?php echo $key['genare_song']?></td>
+                            <td><?php echo $key['publish_year']?></td>
 							<td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
                             <td>
 
@@ -249,38 +236,7 @@ session_start();
                                 <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
                             </td>
 						</tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>John Lilki</td>
-                            <td>September 14, 2013</td>
-                            <td>Action</td>
-                            <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
-                            <td>
-                                <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                                <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>John Lilki</td>
-                            <td>September 14, 2013</td>
-                            <td>Action</td>
-                            <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="asset/http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
-                            <td>
-                                <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                                <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
-                            </td>
-                        </tr>
+                       <?php } ?>
 
 						</tbody>
 					</table>
@@ -290,76 +246,8 @@ session_start();
 
 <!--------------------------------top song start--------------------------------->
 
-			<div class="col-md-6 card mb-5">
-				<div class="card-block p-0">
-					<table class="table table-bordered table-sm m-0">
-						<thead class="">
-						<tr>
-							<th>Multiple</th>
-							<th>Title</th>
-							<th>Artist</th>
-							<th>Genre</th>
-							<th>Listen</th>
-                            <th>Download/Buy</th>
-						</tr>
-						</thead>
-						<tbody>
-
-
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>John Lilki</td>
-                            <td>September 14, 2013</td>
-                            <td>Action</td>
-                            <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="asset/http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
-                            <td>
-                                <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                                <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>John Lilki</td>
-                            <td>September 14, 2013</td>
-                            <td>Action</td>
-                            <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="asset/http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
-                            <td>
-                                <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                                <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>John Lilki</td>
-                            <td>September 14, 2013</td>
-                            <td>Action</td>
-                            <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="asset/http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
-                            <td>
-                                <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                                <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
-                            </td>
-                        </tr>
-
-
-						</tbody>
-					</table>
-				</div>
-
+			<div class="col-md-4 card mb-5">
+                <div class="fb-comments" data-href="https://developers.facebook.com/tools/comments/635983393233255/" data-numposts="5" width="400px"></div>
 			</div>
 		</div>
 	</main>
@@ -425,6 +313,8 @@ session_start();
 
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="asset/js/bootstrap.js"></script>
+
+
 
 </body>
 </html>

@@ -1,3 +1,12 @@
+<?php
+session_start();
+$album_id=$_GET['album_id'];
+require 'controller/dashboard.php';
+$object=new DashBoard();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,64 +50,45 @@
             <thead class="">
             <tr>
                 <th>Multiple</th>
+                <th>Album Art</th>
                 <th>Title</th>
                 <th>Artist</th>
+                <th>Album</th>
                 <th>Genre</th>
-                <th>Listen</th>
-                <th>Download/Buy</th>
+                <th>Year</th>
+                <th class="text-center">Listen</th>
+                <th class="text-center">Dowload/Buy</th>
             </tr>
             </thead>
             <tbody>
 
 
-            <tr>
-                <td>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                    </label>
-                </td>
-                <td>John Lilki</td>
-                <td>September 14, 2013</td>
-                <td>Action</td>
-                <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="asset/http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
-                <td>
-                    <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                    <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                    </label>
-                </td>
-                <td>John Lilki</td>
-                <td>September 14, 2013</td>
-                <td>Action</td>
-                <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="asset/http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
-                <td>
-                    <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                    <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                    </label>
-                </td>
-                <td>John Lilki</td>
-                <td>September 14, 2013</td>
-                <td>Action</td>
-                <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="asset/http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
-                <td>
-                    <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                    <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
-                </td>
-            </tr>
+            <?php
+            $songs=$object->songbyid($album_id);
+            foreach ($songs as $key){ ?>
+                <tr>
+                    <td>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                        </label>
+                    </td>
+                    <td><?php echo "cover link" /*$key['album_cover']*/?></td>
+                    <td><?php echo $key['song_name']?></td>
+                    <td><?php echo $key['artist_name']?></td>
+                    <td><?php echo $key['album_name']?></td>
+                    <td><?php echo $key['genare_song']?></td>
+                    <td><?php echo $key['publish_year']?></td>
+                    <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
+                    <td>
+
+                        <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
+                        <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
+                    </td>
+                </tr>
+            <?php } ?>
+
+
 
 
             </tbody>
