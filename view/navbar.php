@@ -1,8 +1,9 @@
+
 <div  class="agileinfo-header">
     <div class="container">
         <nav style="background-color:#043733" class="navbar navbar-default navbar-fixed-top">
             <div class="agile-logo">
-                <div style="display: inline-flex"><h1><a href="index.html"> &nbsp;<i class="fa fa-music  animated" aria-hidden="true"></i> Radio Title</a></h1>
+                <div style="display: inline-flex"><h1><a href="./index.php"> &nbsp;<i class="fa fa-music  animated" aria-hidden="true"></i> Radio Title</a></h1>
                     <div  class="player">
                         <button  id="btnplay" style="margin: 5px;" class="pulse-button"><span  class="bounce bounceIn animated" aria-hidden="true"></span></button></h1>
                         <div class="songdetails">
@@ -27,7 +28,14 @@
                     <button class="navbutton btn btn-circle btn-danger"><i class="fa fa-google-plus"></i></button>
                     <button class="navbutton btn btn-circle btn-primary"><i class="fa fa-twitter"></i></button>
                     <button class="navbutton btn btn-circle btn-danger"><i class="fa fa-youtube"></i></button>
-                    <button class="navbutton btn  btn-warning">Login</button>
+                    <?php if (isset($_SESSION['username'])){ ?>
+                    <a title="Logout" href="./model/member_logout.php" class="navbutton btn  btn-danger"><i class="fa fa-sign-out"></i>&nbsp;<?php echo $_SESSION['username'];  ?></a>
+                    <?php }
+                    else{ ?>
+                        <a title="Login" href="./userlogin.php" class="navbutton btn  btn-warning"><i class="fa fa-sign-in"></i>&nbsp; Login</a>
+                    <?php  }
+
+                    ?>
                 </div>
 
             </div>

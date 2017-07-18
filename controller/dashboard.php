@@ -5,9 +5,28 @@ class DashBoard extends Connection{
 
     //Query line for execute
     public function execute($sql){
-        $query_result = $this->conn->query($sql);
-        return $query_result;
+        try {
+            $query_result = $this->conn->query($sql);
+            return true;
+        }
+        catch (Exception $e){
+            return $e->getMessage();
+        }
     }
+
+    //return query result
+    public function Query($query){
+        try {
+            $query_result = $this->conn->query($query);
+            return $query_result;
+        }
+        catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+
+
+
 
   //Retrieve all Album
     public function Album(){

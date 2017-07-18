@@ -2488,7 +2488,16 @@ h3.w3ls-hdg {
 }
 
 
-
+.albumtable{
+    margin-top: 130px;
+    margin-bottom: 60px;
+}
+.albumtable h1{
+    margin-bottom: 10px;
+}
+.albumtable button{
+    margin-top: 20px;
+}
 
 
 
