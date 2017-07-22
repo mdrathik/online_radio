@@ -1,7 +1,7 @@
 
 <div  class="agileinfo-header">
     <div class="container">
-        <nav style="background-color:#043733" class="navbar navbar-default navbar-fixed-top">
+        <nav style="background-color:#043733;" class="navbar navbar-default navbar-fixed-top">
             <div class="agile-logo">
                 <div style="display: inline-flex"><h1><a href="./index.php"> &nbsp;<i class="fa fa-music  animated" aria-hidden="true"></i> Radio Title</a></h1>
                     <div  class="player">

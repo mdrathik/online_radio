@@ -1,9 +1,20 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+include_once 'controller/ContactMail.php';
+if (isset($_POST['submit'])){
+    $name=$_POST['name'];
+    $reciver = 'radio@test.bd.education';
+    $subject='contact_us';
+    $message=$_POST['message'];
+    $sender=$_POST['email'];
+    $object= new ContactUs();
+    $object->contactus($reciver,$subject,$message,$sender,$name);
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,18 +111,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<h2 class="agile-title">Contact Us</h2>
 			<div class="col-md-7 contact-right">				
 				<form action="#" method="post"> 
-					<input type="text" name="Name" placeholder="Name" required="">
-					<input type="email" name="Email" placeholder="Email" required=""> 
-					<input type="text" name="Telephone" placeholder="Telephone" required="">
-					<textarea name="Message" placeholder="Message..." required=""></textarea>
-					<input type="submit" value="Submit" >
+					<input type="text" name="name" placeholder="Name" required="">
+					<input type="email" name="email" placeholder="Email" required="">
+					<!--<input type="text" name="Telephone" placeholder="Telephone" required="">-->
+					<textarea name="message" placeholder="Message..." required=""></textarea>
+					<input type="submit" name="submit" value="Submit" >
 				</form>
 			</div>
 			<div class="col-md-5 contact-left">
 				<p>"Lorem Ipsum"is the common name dummy text often used in the design, printing, and type setting industriescommon name dummy text often used in the design, printing, and type setting industries. "</p>
 				<ul>
 					<li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-						756 globel Place, Australia.
+						Motijheel, Dhaka.
 					</li>					
 					<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
 						+123 2222 222
@@ -124,8 +135,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="clearfix"> </div> 
 			<div class="map">
 				<h3 class="agile-title">How to Find Us</h3>
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4376542.827441857!2d133.94238155277205!3d-25.73870281693212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b2bfd076787c5df%3A0x538267a1955b1352!2sAustralia!5e0!3m2!1sen!2sin!4v1439377130002" allowfullscreen></iframe>
-			</div> 
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.3891001819184!2d90.41642236449505!3d23.7335002345977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85c73b3f959%3A0xd11db1bee6bbcc50!2sShatabdi+Tower%2C+Dhaka!5e0!3m2!1sen!2sbd!4v1500666738314" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>		</div>
 		</div>			
 	</div>
 	<!-- /--------------------------/contact ---------------------------->
@@ -160,6 +170,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.js"></script>
+    <script src="asset/js/bootstrap.js"></script>
 </body>
 </html>

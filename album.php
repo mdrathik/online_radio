@@ -66,7 +66,7 @@ $object=new DashBoard();
             <?php
             $songs=$object->songbyid($album_id);
             foreach ($songs as $key){ ?>
-                <tr>
+                <tr title="<?php echo $key['discription']?>" >
                     <td>
                         <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input">
@@ -79,11 +79,10 @@ $object=new DashBoard();
                     <td><?php echo $key['album_name']?></td>
                     <td><?php echo $key['genare_song']?></td>
                     <td><?php echo $key['publish_year']?></td>
-                    <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3?_=8"><a href="http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3">http://radiotodaybd.fm/wp-content/uploads/music-topchart/3.Dhoa-Fuad-feat-Imran.mp3</a></audio></td>
+                    <td><audio class="wp-audio-shortcode" id="audio-143-8" preload="none" style="width: 100%;" controls="controls"><source type="audio/mpeg" src="admin-panel/uploads/demo_music/<?php echo $key['demo_url'];?>"><a href="admin-panel/uploads/demo_music/<?php echo $key['demo_url']?>"></a><?php echo $key['demo_url']?></audio></td>
                     <td>
-
-                        <button class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></button>
-                        <button class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></button>
+                        <a href="admin-panel/uploads/demo_music/<?php echo $key['demo_url']?>" class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></a>
+                        <a href="userpanel/buysingle.php?album_id=<?php echo base64_encode($key['album_id'].":rathik")?>&song_id=<?php echo base64_encode($key['song_id'].":rathik")?>" class="btn btn-danger btn"><span class="glyphicon glyphicon-usd"></span></a>
                     </td>
                 </tr>
             <?php } ?>

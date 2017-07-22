@@ -1,14 +1,11 @@
 <?php
-
-
 require_once '../controller/dashboard.php';
-
-
 
 class UserLogin {
     public function login($username,$password){
         $object=new DashBoard();
         $login="SELECT * FROM userlogin WHERE username='$username' and password='$password'";
+
         try {
             $count=0;
             $result=$object->Query($login);
@@ -16,10 +13,8 @@ class UserLogin {
                 $count++;
                 $userid=$kry['id'];
             }
-            /*echo  $count;*/
 
             if ($count==1){
-                echo $userid;
                 $_SESSION['username']=$username;
                 $_SESSION['user_id']=$userid;
                 echo "<script>window.location = '../index.php'</script>";

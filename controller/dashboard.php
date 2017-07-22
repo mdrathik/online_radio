@@ -3,9 +3,10 @@ include_once 'connect.php';
 class DashBoard extends Connection{
 
 
+
     //base 64 Custom decode
 
-    protected function CustomBase64($encode_id){
+    public function CustomBase64($encode_id){
         $id=base64_decode($encode_id);
         $tokens = explode(':', $id);      // split string on :
         array_pop($tokens);                   // get rid of last element
@@ -43,8 +44,10 @@ class DashBoard extends Connection{
         $album="SELECT * FROM album_name LIMIT 4";
         return $this->Query($album);
     }
-
-
+    public function Album_new(){
+        $album2="SELECT * FROM album_name  LIMIT 4 OFFSET 4";
+        return $this->Query($album2);
+    }
 
     //Retrieve Total Song By album
     public function total_song($album_id){
@@ -69,7 +72,11 @@ class DashBoard extends Connection{
     }
 
 
-
+    public function Store(){
+        $store="SELECT * FROM v_songdetails";
+        $result=$this->Query($store);
+        return $result;
+    }
 
 
     

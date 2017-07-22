@@ -19,6 +19,7 @@
     <!-- js -->
     <script src="asset/js/jquery-2.2.3.min.js"></script>
     <script src="asset/js/custom.js"></script>
+    <script src="asset/js/custom2.js"></script>
 
     <link href="//fonts.googleapis.com/css?family=Aladin" rel="stylesheet">
 
@@ -92,10 +93,19 @@
                                 <div class="form-group">
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                                 </div>
-                                <div class="form-group text-center">
-                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                    <label for="remember"> Remember Me</label>
+                                <div class=" form-group text-center">
+                                    <div class="row">
+                                        <div class="col-lg-offset-2 col-sm-4">
+                                    <img src="model/capcha.php?<?php echo microtime(); ?>" id="capImage"/>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input name="captcha_code" type="text" value="">
+                                        </div>
+                                           </div>
+                                    <button type="button" class="btn" id="refreshbtn" ><span class="glyphicon glyphicon-refresh"></span></button>.
+
                                 </div>
+
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
@@ -107,7 +117,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
-                                                <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
                                             </div>
                                         </div>
                                     </div>
@@ -115,21 +125,22 @@
                             </form>
                             <form id="register-form" action="model/member_register.php" method="POST" role="form" style="display: none;">
                                 <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                    <input required minlength="6" type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                    <input required type="email"  name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    <input minlength="6" required type="password" name="password" id="txtNewPassword"  tabindex="2" class="form-control" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password"  id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                    <input minlength="6" required type="password"  id="txtConfirmPassword" onChange="checkPasswordMatch();" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                    <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="submit" id="login-submit" tabindex="4" class="form-control btn btn-login"">
+                                            <input type="submit"  name="submit" id="login-submit" tabindex="4" class="form-control btn btn-login"">
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +161,12 @@
 
 
 
+<script>
+        $('#refreshbtn').click(function () {
+            $('#capImage').attr('src','model/capcha.php?'+new Date().getTime());
+        });
 
+</script>
 
 
 </body>

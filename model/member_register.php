@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
          $username=$_POST['username'];
          $pasword=$_POST['password'];
          $email=$_POST['email'];
-
         $register="INSERT INTO userlogin (username,password,email)
         VALUES ('$username','$pasword','$email')";
         $result=$object->execute($register);

@@ -66,7 +66,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- ---------------------------------------about ----------------------------------------->
 
 
-    <div class="about agileits">
+    <!--<div class="about agileits">
 		<div class="container">
 			<h2 class="agile-title">About Us</h2>  
 			<div class="about-info">
@@ -119,7 +119,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="clearfix"> </div> 
 			</div>	
 		</div>	
-	</div>
+	</div>-->
 	<!----------------------------------------- //about ----------------------------------------->
 
 
@@ -133,10 +133,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="team-row">
 				<div class="col-md-3 col-sm-6 col-xs-6 team-grids">
 					<div class="thumbnail team-agileits">
-						<img src="asset/images/t1.jpg" class="img-responsive" alt="...">
+						<img src="asset/images/t1.png" class="img-responsive" alt="...">
 						<div class="w3agile-caption">
-							<h4>Vaura Tegsner</h4>
-							<p>Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary</p>
+							<h4>Md Solaiman Hossain </h4>
+							<p>Frontend Developer of this Website</p>
 							<div class="social-icon">
 								<a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
 								<a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a> 
@@ -148,7 +148,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-6 team-grids">
 					<div class="thumbnail team-agileits">
-						<img src="images/t2.jpg" class="img-responsive" alt="...">
+						<img src="asset/images/t2.jpg" class="img-responsive" alt="...">
 						<div class="w3agile-caption">
 							<h4>Jark Kohnson</h4>
 							<p>Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary</p>
@@ -163,7 +163,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-6 team-grids">
 					<div class="thumbnail team-agileits">
-						<img src="images/t3.jpg" class="img-responsive" alt="...">
+						<img src="asset/images/t3.jpg" class="img-responsive" alt="...">
 						<div class="w3agile-caption">
 							<h4>Goes Mehak</h4>
 							<p>Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary</p>						
@@ -178,7 +178,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-6 team-grids">
 					<div class="thumbnail team-agileits">
-						<img src="images/t4.jpg" class="img-responsive" alt="...">
+						<img src="asset/images/t4.jpg" class="img-responsive" alt="...">
 						<div class="w3agile-caption">
 							<h4>Chunk Erson</h4>
 							<p>Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary</p>						
@@ -224,6 +224,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.js"></script>
+    <script src="asset/js/bootstrap.js"></script>
 </body>
 </html>

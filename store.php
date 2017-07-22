@@ -1,3 +1,9 @@
+<?php
+require 'controller/dashboard.php';
+$object=new DashBoard();
+$store=$object->Store();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +50,7 @@
         <p style="color: black;font-weight: bold">Cart is Empty</p>
     </div>
 
-    <br><br><br><h2 class="text-center">Welcome To Our Site</h2>
+    <br><br><br><h2 class="text-center">All Songs</h2>
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
@@ -53,33 +59,47 @@
                     <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
                 </div>
             </div>
+            <form method="post" action="userpanel/buymultiple.php">
             <table class="table">
                 <thead>
                 <tr class="filters">
                     <th>Checkbox</th>
+                    <th>Album Art</th>
                     <th><input type="text" class="form-control" placeholder="Title" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Artist" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Singer" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Album" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Genre" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Year" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="price" disabled></th>
-                    <th>Listen/Buy</th>
+                    <th><input type="text" class="form-control" placeholder="price/Buy" disabled></th>
+                    <th>Listen</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><input type="checkbox"  placeholder="mark"></td>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                </tr>
 
+            <?php foreach ($store as $key){ ?>
+                <tr title="<?php echo $key['discription']?>">
+                    <td><input type="checkbox"  placeholder="mark"></td>
+
+                    <?php if ($key['album_cover']==null){
+                        $album_cover="admin-panel/uploads/Album/noalbum.png";
+                    }else{  $album_cover="admin-panel/uploads/Album/".$key['album_cover'];} ?>
+                    <td><img width="45px" height="40px" src="<?php echo $album_cover;?>"></td>
+                    <td ><?php echo $key['song_name']?></td>
+                    <td><?php echo $key['artist_name']?></td>
+                    <td><?php echo $key['album_name']?></td>
+                    <td><?php echo $key['genare_song']?></td>
+                    <td>       <a href="admin-panel/uploads/demo_music/<?php echo $key['demo_url']?>" class="btn btn-warning btn"><span class="glyphicon glyphicon-download"></span></a>
+                        &nbsp;      <a href="userpanel/buysingle.php?album_id=<?php echo base64_encode($key['album_id'].":rathik")?>&song_id=<?php echo base64_encode($key['song_id'].":rathik")?>" class="btn btn-danger btn"><?php echo $key['price']?><span class="glyphicon glyphicon-usd"></span></a>
+                    </td>
+                    <td width="150px"><audio  id="audio" class="musicta" preload="none" style="width:100%;" controls="controls"><source type="audio/mpeg" src="admin-panel/uploads/demo_music/<?php echo $key['demo_url']?>"</audio></td>
+
+                </tr>
+<?php } ?>
                 </tbody>
             </table>
+
+            <br>
+            <button type="submit" class="btn btn-success btn-block center-block" name="submit">Submit</button>
+            </form>
         </div>
     </div>
 </div>
