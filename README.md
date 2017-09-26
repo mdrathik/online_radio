@@ -1,2 +1,2 @@
 # online_radio
-Online Radio by Southcast IP play with html5 Media Player
+Online Radio which is  played by  SHOUTcast server IP  with html5 Media Player
